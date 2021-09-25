@@ -44,7 +44,7 @@ def destroyed_asteroid_score(input_string, asteroid_type_and_value):
 
     letter_origin = 0
     score = 0
-    # origin = 0
+    origin = 0
     asteroid_destroyed = 0
     total_non_consecutive_letter = len(asteroid_type_and_value) - 1
 
