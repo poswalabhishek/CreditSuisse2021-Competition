@@ -11,7 +11,8 @@ logger = logging.getLogger(__name__)
 
 def winner_guesses(string_array):
 
-    shuffled_set = random.sample(string_array, len(string_array))
+    shuffled_set = string_array
+    # random.sample(string_array, len(string_array))
 
     arr = ["Francisco Finchum", "Joseph Jarosz", "Shelli Scheuerman", "Lyman Laseter", "Spring Sawin", "Monroe Middlebrook"]
     x = 0
