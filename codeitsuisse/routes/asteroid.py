@@ -51,7 +51,8 @@ def destroyed_asteroid_score(input_string, asteroid_type_and_value):
             asteroid_destroyed = asteroid_type_and_value[letter_origin][1]
             prev_origin = letter_origin - 1
             next_origin = letter_origin + 1
-            score3 = 0
+            multiplier = calculate_multiplier(asteroid_destroyed)
+            score3 = asteroid_destroyed * multiplier
             while prev_origin >= 0 and next_origin <= total_non_consecutive_letter:
                 if asteroid_type_and_value[prev_origin][0] != asteroid_type_and_value[next_origin][0]:
                     break
