@@ -27,4 +27,4 @@ virtualenv==20.8.1
 virtualenv-clone==0.5.7
 Werkzeug==2.0.1
 scipy==1.7.1
-random
+random==2.0.0
