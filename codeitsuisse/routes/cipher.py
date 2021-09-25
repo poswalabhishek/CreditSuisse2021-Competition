@@ -19,11 +19,11 @@ def evaluateCipher():
         y = input['Y']
 
         function_x = sum([(X + 1 - i) / X / i for i in range(1, X)])
-
+        logging.info("f(x) :{}".format(function_x))
         result = -1
         # y = SHA256(K::f(x))
         for K in range(0, pow(10, D)):
-            if y == hashlib.sha256(str(K)+"::function_x")
+            if y == hashlib.sha256(str(K) + "::" + str(function_x)):
                 result = K
                 break
         results.append(result)
