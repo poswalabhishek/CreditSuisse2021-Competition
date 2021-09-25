@@ -44,7 +44,7 @@ def optopt():
                 cc = np.divide(np.subtract(c, mu), sigma)
                 cdf_cc = norm.cdf(cc)
                 pdf_cc = norm.pdf(cc)
-                increment = np.subtract(np.multiply(np.subtract(cdf_bb, cdf_cc), np.subtract(mu, strike))), np.multiply(np.subtract(pdf_bb, pdf_cc), sigma)
+                increment = np.subtract(np.multiply(np.subtract(cdf_bb, cdf_cc), np.subtract(mu, strike))), (np.multiply(np.subtract(pdf_bb, pdf_cc), sigma))
                 increment /= diff_cdf_bb_aa
                 expected_return_of_view += increment
             
