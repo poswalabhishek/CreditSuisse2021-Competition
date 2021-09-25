@@ -22,16 +22,11 @@ def calculate_multiplier(asteroid_destroyed):
     
     return multiplier
 
-def score_update(score, new_score):
-    if score < new_score:
-        return new_score
-    return score
-
 def score_and_origin_update(score, new_score, origin, asteroid_type_and_value, letter_origin):
     if score < new_score:
         score = new_score
         origin = 0
-        for i in range(0, letter_origin - 1):
+        for i in range(letter_origin):
             origin += asteroid_type_and_value[i][1]
             logging.info("origin :{}".format(origin))
         origin += (asteroid_type_and_value[letter_origin][1])//2
