@@ -23,7 +23,7 @@ def expected_return_per_view(option_dict, view_dict):
             b = view_dict['max']
             c = max(a, strike)
             mu = view_dict['mean']
-            sigma = np.sqrt(view_dict['var'])
+            sigma = (view_dict['var'])
             alpha = (a - mu)/sigma
             beta = (b - mu)/sigma
             gamma = (c - mu)/sigma
@@ -41,7 +41,7 @@ def expected_return_per_view(option_dict, view_dict):
             b = view_dict['max']
             c = min(b, strike)
             mu = view_dict['mean']
-            sigma = np.sqrt(view_dict['var'])
+            sigma = (view_dict['var'])
             alpha = (a - mu)/sigma
             beta = (b - mu)/sigma
             gamma = (c - mu)/sigma
