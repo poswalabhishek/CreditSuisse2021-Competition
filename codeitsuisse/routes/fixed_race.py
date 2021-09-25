@@ -11,7 +11,15 @@ logger = logging.getLogger(__name__)
 
 def winner_guesses(string_array):
 
-    return random.sample(string_array, len(string_array))
+    shuffled_set = random.sample(string_array, len(string_array))
+
+    arr = ["Francisco Finchum", "Joseph Jarosz", "Shelli Scheuerman", "Lyman Laseter", "Spring Sawin", "Monroe Middlebrook"]
+
+    for i in arr:
+        if i in shuffled_set:
+            shuffled_set[0], shuffled_set[shuffled_set.index(i)] = shuffled_set[shuffled_set.index(i)], shuffled_set[0]
+    
+    return shuffled_set
 
 
 @app.route('/fixedrace', methods=['POST'])
