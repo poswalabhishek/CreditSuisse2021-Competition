@@ -17,7 +17,7 @@ def evaluateFixedRace():
     logging.info("data sent for evaluation {}".format(data))
     # inputValue = data.get("input")
 
-    return ""
+    return data
 
 
 
