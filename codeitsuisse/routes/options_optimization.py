@@ -29,7 +29,7 @@ def expected_return_per_view(option_dict, view_dict):
             gamma = (c - mu)/sigma
 
             multiplier1 = (norm.cdf(beta) - norm.cdf(gamma))/(norm.cdf(beta) - norm.cdf(alpha))
-            multiplier2 = mu - strike - (sigma*(norm.pdf(beta) - norm.pdf(gamma))/(norm.cdf(beta) - norm.cdf(gamma)))
+            multiplier2 = mu - strike - (sigma*sigma*(norm.pdf(beta) - norm.pdf(gamma))/(norm.cdf(beta) - norm.cdf(gamma)))
             return (multiplier1 * multiplier2) - premium
 
     else:
@@ -47,7 +47,7 @@ def expected_return_per_view(option_dict, view_dict):
             gamma = (c - mu)/sigma
 
             multiplier1 = (norm.cdf(gamma) - norm.cdf(alpha))/(norm.cdf(beta) - norm.cdf(alpha))
-            multiplier2 = strike - mu + (sigma*(norm.pdf(gamma) - norm.pdf(alpha))/(norm.cdf(gamma) - norm.cdf(alpha)))
+            multiplier2 = strike - mu + (sigma*sigma*(norm.pdf(gamma) - norm.pdf(alpha))/(norm.cdf(gamma) - norm.cdf(alpha)))
             return (multiplier1 * multiplier2) - premium
 
 def expected_return_all_views(option_dict, view_dicts):
