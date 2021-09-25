@@ -27,6 +27,17 @@ def score_update(score, new_score):
         return new_score
     return score
 
+def score_and_origin_update(score, new_score, origin, asteroid_type_and_value, letter_origin):
+    if score < new_score:
+        score = new_score
+        origin = 0
+        for i in range(0, letter_origin - 1):
+            origin += asteroid_type_and_value[i][1]
+        origin += (asteroid_type_and_value[letter_origin][1])//2
+        return score, origin
+    return score, origin
+
+
 def destroyed_asteroid_score(input_string, asteroid_type_and_value):
 
     letter_origin = 0
@@ -42,11 +53,13 @@ def destroyed_asteroid_score(input_string, asteroid_type_and_value):
             multiplier = calculate_multiplier(asteroid_destroyed)
             score1 = asteroid_destroyed * multiplier
             score = score_update(score, score1)
+            score, origin = score_and_origin_update(score, score2, origin, asteroid_type_and_value, letter_origin)
         elif letter_origin == total_non_consecutive_letter:
             asteroid_destroyed = asteroid_type_and_value[letter_origin][1]
             multiplier = calculate_multiplier(asteroid_destroyed)
             score2 = asteroid_destroyed * multiplier
             score = score_update(score, score2)
+            score, origin = score_and_origin_update(score, score2, origin, asteroid_type_and_value, letter_origin)
         else: 
             asteroid_destroyed = asteroid_type_and_value[letter_origin][1]
             prev_origin = letter_origin - 1
@@ -64,10 +77,10 @@ def destroyed_asteroid_score(input_string, asteroid_type_and_value):
                 multiplier = calculate_multiplier(asteroid_destroyed)
                 score3 += asteroid_destroyed * multiplier
                 score = score_update(score, score3)
-        logging.info("score :{}".format(score))
+                score, origin = score_and_origin_update(score, score2, origin, asteroid_type_and_value, letter_origin)
         letter_origin += 1
 
-    return score, letter_origin
+    return score, origin
 
 @app.route('/asteroid', methods=['POST']) # change the /square to whatever the requirements are
 
@@ -100,8 +113,6 @@ def evaluateAsteroidScore():
                 asteroid_type = input_char
                 asteroid_value = 1        
 
-        # check if the values are correct
-        logging.info("Asteroid Type and Value :{}".format(asteroid_type_and_value))
         score, origin = destroyed_asteroid_score(input_string, asteroid_type_and_value)
         case_output['score'] = score
         case_output['origin'] = origin
