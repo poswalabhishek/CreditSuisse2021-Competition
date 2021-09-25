@@ -10,48 +10,6 @@ logger = logging.getLogger(__name__)
 from scipy.stats import norm
 from math import sqrt
 
-def expected_return_per_view(option_dict, view_dict):
-    strike = option_dict['strike']
-    premium = option_dict['premium']
-
-    if option_dict['type'] == 'call':
-        if strike >= view_dict['max']:
-            return -premium
-        else:
-            mu = view_dict['mean']
-            sigma = sqrt(view_dict['var'])
-            a = view_dict['min']
-            b = view_dict['max']
-            c = max(a, strike)
-            aa = (a-mu)/sigma
-            bb = (b-mu)/sigma
-            cc = (c-mu)/sigma
-            diff_cdf_bb_aa = norm.cdf(bb) - norm.cdf(aa)
-            diff_cdf_bb_cc = norm.cdf(bb) - norm.cdf(cc)
-            diff_pdf_bb_cc = norm.pdf(bb) - norm.pdf(cc)
-            multiplier0 = diff_cdf_bb_cc / diff_cdf_bb_aa
-            multiplier1 = diff_pdf_bb_cc / diff_cdf_bb_aa
-            return multiplier0 * (mu - strike) - multiplier1 * sigma - premium
-
-    else:
-        if strike <= view_dict['min']:
-            return -premium
-        else:
-            mu = view_dict['mean']
-            sigma = sqrt(view_dict['var'])
-            a = view_dict['min']
-            b = view_dict['max']
-            d = min(b, strike)
-            aa = (a-mu)/sigma
-            bb = (b-mu)/sigma
-            dd = (d-mu)/sigma
-            diff_cdf_bb_aa = norm.cdf(bb) - norm.cdf(aa)
-            diff_cdf_dd_aa = norm.cdf(dd) - norm.cdf(aa)
-            diff_pdf_dd_aa = norm.pdf(dd) - norm.pdf(aa)
-            multiplier0 = diff_cdf_dd_aa / diff_cdf_bb_aa
-            multiplier1 = diff_pdf_dd_aa / diff_cdf_bb_aa
-            return multiplier0 * (strike - mu) + multiplier1 * sigma - premium
-
 @app.route('/optopt', methods=['POST'])
 def optopt():
     input = request.get_json()
