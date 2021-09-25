@@ -28,9 +28,9 @@ def score_and_origin_update(score, new_score, origin, asteroid_type_and_value, l
         origin = 0
         for i in range(letter_origin):
             origin += asteroid_type_and_value[i][1]
-            logging.info("origin :{}".format(origin))
+            # logging.info("origin :{}".format(origin))
         origin += (asteroid_type_and_value[letter_origin][1])//2
-        logging.info("final_origin :{}".format(origin))
+        # logging.info("final_origin :{}".format(origin))
         return score, origin
     return score, origin
 
