@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 def evaluateFixedRace():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
-    inputValue = data.get("input")
+    # inputValue = data.get("input")
 
     return data
 
