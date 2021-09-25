@@ -14,10 +14,11 @@ def winner_guesses(string_array):
     shuffled_set = random.sample(string_array, len(string_array))
 
     arr = ["Francisco Finchum", "Joseph Jarosz", "Shelli Scheuerman", "Lyman Laseter", "Spring Sawin", "Monroe Middlebrook"]
-
+    x = 0
     for i in arr:
         if i in shuffled_set:
-            shuffled_set[0], shuffled_set[shuffled_set.index(i)] = shuffled_set[shuffled_set.index(i)], shuffled_set[0]
+            shuffled_set[x], shuffled_set[shuffled_set.index(i)] = shuffled_set[shuffled_set.index(i)], shuffled_set[x]
+            x += 1
     
     return shuffled_set
 
