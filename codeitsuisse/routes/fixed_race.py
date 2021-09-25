@@ -36,7 +36,8 @@ def evaluateFixedRace():
 
     result_string = winner_guesses(string_array)
     
-    return (',').join(result_string)
+    return (',').join(result_string) 
+    
 
 
 
