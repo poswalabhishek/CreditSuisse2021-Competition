@@ -6,8 +6,6 @@ from codeitsuisse import app
 
 logger = logging.getLogger(__name__)
 
-@app.route('/asteroid', methods=['POST']) # change the /square to whatever the requirements are
-
 
 # step 1: preprocess
 # step 2: prepare the function (destroyed_asteroid_score)
@@ -63,6 +61,7 @@ def destroyed_asteroid_score(input_string, asteroid_type_and_value):
 
     return score, letter_origin
 
+@app.route('/asteroid', methods=['POST']) # change the /square to whatever the requirements are
 
 def evaluateAsteroidScore():
     input = request.get_json()
