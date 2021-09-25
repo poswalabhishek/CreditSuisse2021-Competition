@@ -4,6 +4,7 @@ import json
 from flask import request, jsonify
 
 from codeitsuisse import app
+import numpy as np
 
 logger = logging.getLogger(__name__)
 
@@ -25,8 +26,8 @@ def optopt():
         sigma = sqrt(view_dict['var'])
         a = view_dict['min']
         b = view_dict['max']
-        aa = (a-mu)/sigma
-        bb = (b-mu)/sigma
+        aa = np.divide(np.subtract(a, mu), sigma)
+        bb = np.divide(np.subtract(b, mu), sigma)
         cdf_aa = norm.cdf(aa)
         cdf_bb = norm.cdf(bb)
         pdf_aa = norm.pdf(aa)
@@ -40,19 +41,19 @@ def optopt():
 
             if option_dict['type'] == 'call' and strike < b:
                 c = max(a, strike)
-                cc = (c-mu)/sigma
+                cc = np.divide(np.subtract(c, mu), sigma)
                 cdf_cc = norm.cdf(cc)
                 pdf_cc = norm.pdf(cc)
-                increment = (cdf_bb-cdf_cc)*(mu-strike) - (pdf_bb-pdf_cc)*sigma
+                increment = np.subtract(np.multiply(np.subtract(cdf_bb, cdf_cc), (mu-strike))), np.multiply(np.subtract(pdf_bb, pdf_cc), sigma)
                 increment /= diff_cdf_bb_aa
                 expected_return_of_view += increment
             
             if option_dict['type'] == 'put' and strike > a:
                 d = min(b, strike)
-                dd = (d-mu)/sigma
+                dd = np.divide(np.subtract(d, mu), sigma)
                 cdf_dd = norm.cdf(dd)
                 pdf_dd = norm.pdf(dd)
-                increment = (cdf_dd-cdf_aa)*(strike-mu) + (pdf_dd-pdf_aa)*sigma
+                increment = np.add(np.multiply(np.subtract(cdf_dd, cdf_aa), np.subtract(strike, mu)), np.multiply(np.subtract(pdf_dd, pdf_aa), sigma))
                 increment /= diff_cdf_bb_aa
                 expected_return_of_view += increment
 
