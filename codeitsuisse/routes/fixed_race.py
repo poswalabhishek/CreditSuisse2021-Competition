@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 def winner_guesses(string_array):
 
-    return random.shuffle(string_array, len(string_array))
+    return random.sample(string_array, len(string_array))
 
 
 @app.route('/fixedrace', methods=['POST'])
