@@ -1,5 +1,6 @@
 import logging
 import json
+import numpy
 import random
 
 from flask import request, jsonify
@@ -10,7 +11,7 @@ logger = logging.getLogger(__name__)
 
 def winner_guesses(string_array):
 
-    return random.shuffle(string_array)
+    return random.shuffle(string_array, len(string_array))
 
 
 @app.route('/fixedrace', methods=['POST'])
