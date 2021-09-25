@@ -2,6 +2,7 @@ import logging
 import json
 import hashlib
 from flask import request, jsonify
+import math
 
 from codeitsuisse import app
 
@@ -18,7 +19,7 @@ def evaluateCipher():
         X = input['X']
         y = input['Y']
 
-        function_x = sum([(X + 1 - i) / X / i for i in range(1, X)])
+        function_x = (X+1)/X * (0.57721566 + math.log(X) + 0.5/X) - 1
         logging.info("f(x) :{}".format(function_x))
         result = -1
         # y = SHA256(K::f(x))
