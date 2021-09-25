@@ -30,6 +30,7 @@ def score_update(score, new_score):
 def destroyed_asteroid_score(input_string, asteroid_type_and_value):
 
     letter_origin = 0
+    score = 0
     origin = 0
     asteroid_destroyed = 0
     total_non_consecutive_letter = len(asteroid_type_and_value)
@@ -83,7 +84,6 @@ def evaluateAsteroidScore():
         '''
         case_output = {}
         case_output['input'] = inputString
-        logging.info("Output :{}".format(case_output))
 
         input_string = inputString + 'x'
         asteroid_type_and_value = []
