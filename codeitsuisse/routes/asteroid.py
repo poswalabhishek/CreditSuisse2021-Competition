@@ -22,11 +22,15 @@ def calculate_multiplier(asteroid_destroyed):
     
     return multiplier
 
+def score_update(score, new_score):
+    if score < new_score:
+        return new_score
+    return score
+
 def destroyed_asteroid_score(input_string, asteroid_type_and_value):
 
     letter_origin = 0
     origin = 0
-    score = 0
     asteroid_destroyed = 0
     total_non_consecutive_letter = len(asteroid_type_and_value)
 
@@ -35,28 +39,29 @@ def destroyed_asteroid_score(input_string, asteroid_type_and_value):
         if letter_origin == 0:
             asteroid_destroyed = asteroid_type_and_value[letter_origin][1]
             multiplier = calculate_multiplier(asteroid_destroyed)
-            score = asteroid_destroyed * multiplier
-
+            score1 = asteroid_destroyed * multiplier
+            score = score_update(score, score1)
         elif letter_origin == total_non_consecutive_letter:
             asteroid_destroyed = asteroid_type_and_value[letter_origin][1]
             multiplier = calculate_multiplier(asteroid_destroyed)
-            score = asteroid_destroyed * multiplier
-
+            score2 = asteroid_destroyed * multiplier
+            score = score_update(score, score2)
         else: 
             asteroid_destroyed = asteroid_type_and_value[letter_origin][1]
             prev_origin = letter_origin - 1
             next_origin = letter_origin + 1
-
+            score3 = 0
             while prev_origin >= 0 and next_origin <= total_non_consecutive_letter:
                 if asteroid_type_and_value[prev_origin][0] != asteroid_type_and_value[next_origin][0]:
                     break
-                asteroid_destroyed += asteroid_type_and_value[prev_origin][1] + asteroid_type_and_value[next_origin][1]
+                asteroid_destroyed = asteroid_type_and_value[prev_origin][1] + asteroid_type_and_value[next_origin][1]
                 
                 prev_origin -= 1
                 next_origin += 1
                 multiplier = calculate_multiplier(asteroid_destroyed)
-                score += asteroid_destroyed * multiplier
-
+                score3 += asteroid_destroyed * multiplier
+                score = score_update(score, score3)
+                
         letter_origin += 1
 
     return score, letter_origin
