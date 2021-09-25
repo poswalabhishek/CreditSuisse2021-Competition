@@ -95,7 +95,7 @@ def evaluateAsteroidScore():
                 next_asteroid = input_string[i+1]
 
             asteroid_type_and_value.append((curr_asteroid, asteroid_value))
-
+            i += 1
         # check if the values are correct
         # logging.info("My result :{}".format(asteroid_type_and_value))
         case_output['score', 'origin'] = destroyed_asteroid_score(input_string, asteroid_type_and_value)
