@@ -9,26 +9,34 @@ logger = logging.getLogger(__name__)
 
 
 
-def right_and_wrong_symbols_position_result(result):
-    right_symbol_right_position = result % 10
-    right_symbol_wrong_position = (result // 10) % 10
+# def right_and_wrong_symbols_position_result(result):
+#     right_symbol_right_position = result % 10
+#     right_symbol_wrong_position = (result // 10) % 10
 
-    return right_symbol_right_position, right_symbol_wrong_position
+#     return right_symbol_right_position, right_symbol_wrong_position
 
 @app.route('/decoder', methods=['POST'])
+
+# def evaluateDecoder():
+#     data = request.get_json()
+#     logging.info("data sent for evaluation {}".format(data))
+
+#     result = {}
+    
+#     result['answer'] = data['history'][0]['output_received']
+
+#     result = random.sample(result, len(result))
+
+#     logging.info("My result :{}".format(result))
+#     return json.dumps(result)
+
 
 def evaluateDecoder():
     data = request.get_json()
     logging.info("data sent for evaluation {}".format(data))
-
-    result = {}
-    
-    result['answer'] = data['history'][0]['output_received']
-
-    result = random.sample(result, len(result))
-
+    inputValue = data.get("input")
+    result = inputValue * inputValue
     logging.info("My result :{}".format(result))
     return json.dumps(result)
-
 
 
