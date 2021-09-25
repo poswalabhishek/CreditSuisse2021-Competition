@@ -35,8 +35,8 @@ def destroyed_asteroid_score(input_string, asteroid_type_and_value):
     asteroid_destroyed = 0
     total_non_consecutive_letter = len(asteroid_type_and_value) - 1
 
-    for i in asteroid_type_and_value[0]:
-        logging.info("type :{}".format(i))
+    for i in asteroid_type_and_value:
+
         if letter_origin == 0:
             asteroid_destroyed = asteroid_type_and_value[letter_origin][1]
             multiplier = calculate_multiplier(asteroid_destroyed)
@@ -63,7 +63,7 @@ def destroyed_asteroid_score(input_string, asteroid_type_and_value):
                 multiplier = calculate_multiplier(asteroid_destroyed)
                 score3 += asteroid_destroyed * multiplier
                 score = score_update(score, score3)
-                
+        logging.info("score :{}".format(score))
         letter_origin += 1
 
     return score, letter_origin
