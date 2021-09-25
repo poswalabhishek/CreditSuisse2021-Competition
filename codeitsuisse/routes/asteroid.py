@@ -80,11 +80,11 @@ def evaluateAsteroidScore():
         case_output['input'] = inputString
         input_string = inputString + 'x'
         asteroid_type_and_value = []
-        
+        i = 0
         curr_asteroid = input_string[i]
         next_asteroid = input_string[i + 1]
         
-        i = 0
+        
         while i != len(input_string) - 1:
             asteroid_value = 0
             
