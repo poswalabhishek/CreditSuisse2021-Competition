@@ -87,7 +87,7 @@ def evaluateAsteroidScore():
 
         input_string = inputString + 'x'
         asteroid_type_and_value = []
-        asteroid_type = 'x'
+        asteroid_type = input_string[0]
         asteroid_value = 0
 
         for input_char in input_string:
