@@ -85,24 +85,20 @@ def evaluateAsteroidScore():
         case_output = {}
         case_output['input'] = inputString
 
-        input_string = inputString + 'x'
+        input_string = inputString
         asteroid_type_and_value = []
-        i = 0
-        curr_asteroid = input_string[i]
-        next_asteroid = input_string[i + 1]
-        
-        
-        while i != len(input_string) - 1:
-            asteroid_value = 0
-            
-            while curr_asteroid == next_asteroid and (input_string[i] != 'x' or input_string[i+1] != 'x'):
-                asteroid_value += 1
-                i += 1
-                curr_asteroid = input_string[i]
-                next_asteroid = input_string[i+1]
 
+        for i in range(0, len(input_string) - 1):
+            asteroid_value = 0
+            curr_asteroid = input_string[i]
+            for j in range(i + 1, len(input_string) - 1):
+                next_asteroid = input_string[j]
+                if curr_asteroid != next_asteroid:
+                    break
+                asteroid_value += 1
             asteroid_type_and_value.append((curr_asteroid, asteroid_value))
-            i += 1
+        
+
         # check if the values are correct
         logging.info("Asteroid Type and Value :{}".format(asteroid_type_and_value))
         score, origin = destroyed_asteroid_score(input_string, asteroid_type_and_value)
