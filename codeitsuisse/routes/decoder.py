@@ -23,7 +23,7 @@ def evaluateDecoder():
 
     result = {}
     
-    result['answer'] = data["history"]["output_received"]
+    result['answer'] = data['history'][0]['output_received']
 
     result = random.sample(result, len(result))
 
