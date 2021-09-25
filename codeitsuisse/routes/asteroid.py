@@ -78,6 +78,8 @@ def evaluateAsteroidScore():
         '''
         case_output = {}
         case_output['input'] = inputString
+        logging.info("Output :{}".format(case_input))
+
         input_string = inputString + 'x'
         asteroid_type_and_value = []
         i = 0
