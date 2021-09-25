@@ -13,7 +13,8 @@ logger = logging.getLogger(__name__)
 # step 2: prepare the function (destroyed_asteroid_score)
 # step 3: call the function
 
-def calculate_multiplier (asteroid_destroyed):
+def calculate_multiplier(asteroid_destroyed):
+    multiplier = 0
     if asteroid_destroyed <= 6:
         multiplier = 1
     elif asteroid_destroyed >= 7 and asteroid_destroyed < 10:
