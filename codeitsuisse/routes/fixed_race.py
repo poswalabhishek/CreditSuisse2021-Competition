@@ -17,7 +17,9 @@ def winner_guesses(string_array):
     x = 0
     for i in arr:
         if i in shuffled_set:
-            shuffled_set[x], shuffled_set[shuffled_set.index(i)] = shuffled_set[shuffled_set.index(i)], shuffled_set[x]
+            y = shuffled_set[x]
+            shuffled_set[x] = shuffled_set[shuffled_set.index(i)]
+            shuffled_set[shuffled_set.index(i)] = y
             x += 1
     
     return shuffled_set
